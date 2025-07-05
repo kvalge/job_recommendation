@@ -10,7 +10,9 @@ def clean_job_data(df: pd.DataFrame) -> pd.DataFrame:
         "job_no_degree_mention",
         "job_health_insurance",
         "job_country",
-        "company_name"
+        "company_name",
+        "job_skills",
+        "job_type_skills"
     ]
     df = df[columns_to_keep]
 
