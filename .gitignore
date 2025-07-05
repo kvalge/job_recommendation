@@ -40,10 +40,10 @@ coverage.xml
 *.out
 
 # Data and model files (optional — if you don’t want to version them)
-data/*.csv
-data/*.xlsx
-models/*.pkl
-models/*.joblib
+back-end/data/*.csv
+back-end/data/*.xlsx
+back-end/models/*.pkl
+back-end/models/*.joblib
 
 # FastAPI auto-generated stuff (e.g., docs)
 *.sqlite3
@@ -57,6 +57,7 @@ models/*.joblib
 *.ipynb
 
 # Ignore saved models and metadata
-models/**/*.joblib
-models/job_metadata.csv
+back-end/models/**/*.joblib
+back-end/models/job_metadata.csv
 
+/back-end/data/job_types_skills.json

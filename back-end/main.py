@@ -7,8 +7,7 @@ app = FastAPI()
 
 @app.get("/")
 async def main():
-    T
-    return
+    pass
 
 
 

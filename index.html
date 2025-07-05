@@ -2,9 +2,63 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Recommendation App</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Recommendation</title>
+    <link rel="stylesheet" href="front-end/static/style.css">
 </head>
 <body>
+    <div class="container">
+        <header>
+            <h1>Job Recommendations</h1>
+            <p>Select a job type and skills to get recommendations</p>
+        </header>
 
+        <main>
+            <section class="job-type-section">
+                <h2>Select Job Type</h2>
+                <div class="selection-container">
+                    <select id="jobTypeSelect" class="job-type-select">
+                        <option value="">Choose a job type...</option>
+                    </select>
+                </div>
+            </section>
+
+            <section class="skills-section">
+                <h2>Select Skills</h2>
+                <div class="skills-input-container">
+                    <div class="combo-input-container">
+                        <input type="text" id="skillComboInput" placeholder="Click to browse or type to search skills..." class="skill-combo-input" disabled readonly>
+                        <button id="clearComboInput" class="clear-combo-btn" disabled>×</button>
+                        <button id="dropdownToggle" class="dropdown-toggle-btn" disabled>▼</button>
+                    </div>
+
+                    <div class="skills-dropdown-container" id="skillsDropdownContainer" style="display: none;">
+                        <ul id="skillsDropdownList" class="skills-dropdown-list"></ul>
+                    </div>
+                </div>
+            </section>
+
+            <section class="selected-skills-section">
+                <div class="selected-skills-header">
+                    <h2>Selected Skills</h2>
+                    <button id="clearAllBtn" class="clear-all-btn" disabled>Clear All</button>
+                </div>
+                <div class="selected-skills-container" id="selectedSkillsContainer">
+                    <p class="no-skills-message">No skills selected yet</p>
+                </div>
+            </section>
+
+            <section class="submit-section">
+                <button id="submitBtn" class="submit-btn" disabled>Get Recommendations</button>
+            </section>
+        </main>
+
+        <div id="loadingIndicator" class="loading-indicator" style="display: none;">
+            <div class="spinner"></div>
+            <p>Loading recommendations...</p>
+        </div>
+    </div>
+
+        <script src="front-end/js/recommendation.js"></script>
 </body>
 </html>
