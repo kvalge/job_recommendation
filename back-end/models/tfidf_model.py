@@ -1,6 +1,9 @@
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
-from data.load_clean_data import load_clean_data
+import sys
+import os
+sys.path.append(os.path.join(os.path.dirname(__file__), '..', 'data'))
+from load_clean_data import load_clean_data
 import numpy as np
 
 
@@ -21,10 +24,14 @@ class TfidfRecommender:
         for idx in top_indices:
             job = self.df.iloc[idx]
             recommendations.append({
+                "job_title_short": job['job_title_short'],
                 "job_title": job['job_title'],
+                "job_work_from_home": job['job_work_from_home'],
+                "job_posted_date": job['job_posted_date'],
+                "job_health_insurance": job['job_health_insurance'],
+                "job_country": job['job_country'],
                 "company_name": job['company_name'],
-                "remote": job['job_work_from_home'],
-                "required_skills": job['job_skills']
+                "job_skills": job['job_skills']
             })
         return recommendations
 
@@ -41,6 +48,6 @@ if __name__ == "__main__":
         print(f"\n Recommendations for skills: {user_skills}\n")
         results = recommender.recommend(user_skills)
         for i, rec in enumerate(results, 1):
-            print(f"{i}. {rec['job_title']} @ {rec['company_name']} (Remote: {rec['remote']})")
-            print(f"   Required skills: {', '.join(rec['required_skills'])}")
+            print(f"{i}. {rec['job_title']} @ {rec['company_name']} (Remote: {rec['job_work_from_home']})")
+            print(f"   Required skills: {', '.join(rec['job_skills'])}")
             print("   ---")

@@ -1,5 +1,5 @@
 from load_data import load_raw_data
-from data.clean_data import clean_job_data
+from clean_data import clean_job_data
 
 
 def eda():

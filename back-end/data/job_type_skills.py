@@ -19,7 +19,7 @@ def process_job_type_skills():
     for d in df['job_type_skills']:
         for skill_type, skills in d.items():
             for skill in skills:
-                type_skill_map[skill_type].add(skill.lower())  # normalize to lowercase
+                type_skill_map[skill_type].add(skill.lower())
 
     type_skill_map = {k: sorted(list(v)) for k, v in type_skill_map.items()}
 

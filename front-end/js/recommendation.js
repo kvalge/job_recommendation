@@ -2,6 +2,8 @@ let jobTypesData = {};
 let selectedSkills = new Set();
 let currentJobType = '';
 let allSkills = [];
+let allJobResults = [];
+let filteredJobResults = [];
 
 const jobTypeSelect = document.getElementById('jobTypeSelect');
 const skillComboInput = document.getElementById('skillComboInput');
@@ -13,6 +15,13 @@ const selectedSkillsContainer = document.getElementById('selectedSkillsContainer
 const clearAllBtn = document.getElementById('clearAllBtn');
 const submitBtn = document.getElementById('submitBtn');
 const loadingIndicator = document.getElementById('loadingIndicator');
+const resultsSection = document.getElementById('resultsSection');
+const clearResultsBtn = document.getElementById('clearResultsBtn');
+const countryFilter = document.getElementById('countryFilter');
+const jobTypeFilter = document.getElementById('jobTypeFilter');
+const remoteFilter = document.getElementById('remoteFilter');
+const resultsCount = document.getElementById('resultsCount');
+const jobResults = document.getElementById('jobResults');
 
 async function init() {
     try {
@@ -42,6 +51,10 @@ function setupEventListeners() {
     dropdownToggle.addEventListener('click', toggleDropdown);
     clearAllBtn.addEventListener('click', clearAllSkills);
     submitBtn.addEventListener('click', submitSkills);
+    clearResultsBtn.addEventListener('click', clearResults);
+    countryFilter.addEventListener('change', applyFilters);
+    jobTypeFilter.addEventListener('change', applyFilters);
+    remoteFilter.addEventListener('change', applyFilters);
     
     document.addEventListener('click', handleOutsideClick);
 }
@@ -234,7 +247,7 @@ async function submitSkills() {
         loadingIndicator.style.display = 'block';
         submitBtn.disabled = true;
 
-        const response = await fetch('/recommend', {
+        const response = await fetch('http://localhost:8000/recommend', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -247,8 +260,16 @@ async function submitSkills() {
         }
 
         const result = await response.json();
-        showSuccess('Recommendations received successfully!');
-        console.log('Recommendations:', result);
+        
+        if (result.status === 'success') {
+            allJobResults = result.recommendations;
+            filteredJobResults = [...allJobResults];
+            showResults();
+            populateFilterOptions();
+            applyFilters();
+        } else {
+            showError(result.message || 'Failed to get recommendations');
+        }
         
     } catch (error) {
         console.error('Error submitting skills:', error);
@@ -265,6 +286,112 @@ function showError(message) {
 
 function showSuccess(message) {
     alert('Success: ' + message);
+}
+
+function showResults() {
+    // Hide selection sections
+    document.querySelector('main').style.display = 'none';
+    
+    // Show results section
+    resultsSection.style.display = 'block';
+}
+
+function clearResults() {
+    allJobResults = [];
+    filteredJobResults = [];
+
+    resultsSection.style.display = 'none';
+
+    document.querySelector('main').style.display = 'block';
+
+    jobResults.innerHTML = '';
+
+    countryFilter.innerHTML = '<option value="">All Countries</option>';
+    jobTypeFilter.innerHTML = '<option value="">All Job Types</option>';
+    remoteFilter.value = '';
+}
+
+function populateFilterOptions() {
+    const countries = [...new Set(allJobResults.map(job => job.job_country))].sort();
+    countryFilter.innerHTML = '<option value="">All Countries</option>';
+    countries.forEach(country => {
+        const option = document.createElement('option');
+        option.value = country;
+        option.textContent = country;
+        countryFilter.appendChild(option);
+    });
+
+    const jobTypes = [...new Set(allJobResults.map(job => job.job_title_short))].sort();
+    jobTypeFilter.innerHTML = '<option value="">All Job Types</option>';
+    jobTypes.forEach(type => {
+        const option = document.createElement('option');
+        option.value = type;
+        option.textContent = type;
+        jobTypeFilter.appendChild(option);
+    });
+}
+
+function applyFilters() {
+    const selectedCountry = countryFilter.value;
+    const selectedJobType = jobTypeFilter.value;
+    const selectedRemote = remoteFilter.value;
+    
+    filteredJobResults = allJobResults.filter(job => {
+        const matchesCountry = !selectedCountry || job.job_country === selectedCountry;
+        const matchesJobType = !selectedJobType || job.job_title_short === selectedJobType;
+        const matchesRemote = !selectedRemote || job.job_work_from_home === selectedRemote;
+        
+        return matchesCountry && matchesJobType && matchesRemote;
+    });
+    
+    displayJobResults();
+}
+
+function displayJobResults() {
+    resultsCount.textContent = `Showing ${filteredJobResults.length} jobs`;
+    
+    if (filteredJobResults.length === 0) {
+        jobResults.innerHTML = '<div class="no-results">No jobs found matching your criteria.</div>';
+        return;
+    }
+    
+    jobResults.innerHTML = '';
+    
+    filteredJobResults.forEach((job, index) => {
+        const jobCard = document.createElement('div');
+        jobCard.className = 'job-card';
+        
+        const skillsText = Array.isArray(job.job_skills) ? job.job_skills.join(', ') : job.job_skills;
+        
+        jobCard.innerHTML = `
+            <div class="job-header">
+                <h3 class="job-title">${job.job_title}</h3>
+                <span class="job-type-badge">${job.job_title_short}</span>
+            </div>
+            <div class="job-details">
+                <div class="job-company">
+                    <strong>Company:</strong> ${job.company_name}
+                </div>
+                <div class="job-location">
+                    <strong>Country:</strong> ${job.job_country}
+                </div>
+                <div class="job-remote">
+                    <strong>Remote Work:</strong> ${job.job_work_from_home}
+                </div>
+                <div class="job-posted">
+                    <strong>Posted:</strong> ${job.job_posted_date}
+                </div>
+                <div class="job-health">
+                    <strong>Health Insurance:</strong> ${job.job_health_insurance}
+                </div>
+                <div class="job-skills">
+                    <strong>Required Skills:</strong> ${skillsText}
+                </div>
+            </div>
+        `;
+        
+        jobResults.appendChild(jobCard);
+    });
 }
 
 document.addEventListener('DOMContentLoaded', init);

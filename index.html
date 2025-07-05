@@ -48,10 +48,49 @@
                 </div>
             </section>
 
-            <section class="submit-section">
+                        <section class="submit-section">
                 <button id="submitBtn" class="submit-btn" disabled>Get Recommendations</button>
             </section>
         </main>
+
+        <!-- Results Section -->
+        <div id="resultsSection" class="results-section" style="display: none;">
+            <div class="results-header">
+                <h2>Job Recommendations</h2>
+                <button id="clearResultsBtn" class="clear-results-btn">Clear Results</button>
+            </div>
+            
+            <div class="results-filters">
+                <div class="filter-group">
+                    <label for="countryFilter">Filter by Country:</label>
+                    <select id="countryFilter" class="filter-select">
+                        <option value="">All Countries</option>
+                    </select>
+                </div>
+                
+                <div class="filter-group">
+                    <label for="jobTypeFilter">Filter by Job Type:</label>
+                    <select id="jobTypeFilter" class="filter-select">
+                        <option value="">All Job Types</option>
+                    </select>
+                </div>
+                
+                <div class="filter-group">
+                    <label for="remoteFilter">Remote Work:</label>
+                    <select id="remoteFilter" class="filter-select">
+                        <option value="">All</option>
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="results-stats">
+                <p id="resultsCount">Showing 0 jobs</p>
+            </div>
+            
+            <div id="jobResults" class="job-results"></div>
+        </div>
 
         <div id="loadingIndicator" class="loading-indicator" style="display: none;">
             <div class="spinner"></div>
@@ -59,6 +98,6 @@
         </div>
     </div>
 
-        <script src="front-end/js/recommendation.js"></script>
+    <script src="front-end/js/recommendation.js"></script>
 </body>
 </html>
