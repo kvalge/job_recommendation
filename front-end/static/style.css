@@ -23,7 +23,7 @@ header {
     text-align: center;
     margin-bottom: 40px;
     padding: 30px 0;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: #1D3661;
     color: white;
     border-radius: 15px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
@@ -73,7 +73,7 @@ section h2 {
 
 .job-type-select:focus {
     outline: none;
-    border-color: #667eea;
+    border-color: #1D3661;
     box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
 }
 
@@ -104,7 +104,7 @@ section h2 {
 
 .skill-combo-input:focus {
     outline: none;
-    border-color: #667eea;
+    border-color: #1D3661;
     box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
 }
 
@@ -134,7 +134,7 @@ section h2 {
 
 .clear-combo-btn:hover:not(:disabled) {
     background-color: #e2e8f0;
-    color: #667eea;
+    color: #1D3661;
 }
 
 .clear-combo-btn:disabled {
@@ -158,7 +158,7 @@ section h2 {
 
 .dropdown-toggle-btn:hover:not(:disabled) {
     background-color: #e2e8f0;
-    color: #667eea;
+    color: #1D3661;
 }
 
 .dropdown-toggle-btn:disabled {
@@ -226,7 +226,7 @@ section h2 {
 
 .clear-all-btn {
     padding: 10px 20px;
-    background: #e53e3e;
+    background: darkred;
     color: white;
     border: none;
     border-radius: 6px;
@@ -237,7 +237,7 @@ section h2 {
 }
 
 .clear-all-btn:hover:not(:disabled) {
-    background: #c53030;
+    background: darkred;
     transform: translateY(-1px);
 }
 
@@ -269,7 +269,7 @@ section h2 {
 .skill-tag {
     display: flex;
     align-items: center;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: #1D3661;
     color: white;
     padding: 8px 12px;
     border-radius: 20px;
@@ -316,7 +316,7 @@ section h2 {
 
 .submit-btn {
     padding: 16px 40px;
-    background: linear-gradient(135deg, #38a169 0%, #2f855a 100%);
+    background: #375749;
     color: white;
     border: none;
     border-radius: 10px;
@@ -370,7 +370,7 @@ section h2 {
 
 .clear-results-btn {
     padding: 12px 24px;
-    background: #e53e3e;
+    background: darkred;
     color: white;
     border: none;
     border-radius: 8px;
@@ -381,7 +381,7 @@ section h2 {
 }
 
 .clear-results-btn:hover {
-    background: #c53030;
+    background: darkred;
     transform: translateY(-2px);
 }
 
@@ -420,7 +420,7 @@ section h2 {
 
 .filter-select:focus {
     outline: none;
-    border-color: #667eea;
+    border-color: #1D3661;
     box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
 }
 
@@ -429,7 +429,7 @@ section h2 {
     padding: 15px;
     background-color: #f0f8ff;
     border-radius: 8px;
-    border-left: 4px solid #667eea;
+    border-left: 4px solid #1D3661;
 }
 
 .results-stats p {
@@ -476,7 +476,7 @@ section h2 {
 }
 
 .job-type-badge {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: #1D3661;
     color: white;
     padding: 6px 12px;
     border-radius: 20px;
@@ -539,7 +539,7 @@ section h2 {
     width: 50px;
     height: 50px;
     border: 5px solid #f3f3f3;
-    border-top: 5px solid #667eea;
+    border-top: 5px solid #1D3661;
     border-radius: 50%;
     animation: spin 1s linear infinite;
     margin-bottom: 20px;
