@@ -55,3 +55,8 @@ models/*.joblib
 
 # If you use Jupyter occasionally
 *.ipynb
+
+# Ignore saved models and metadata
+models/**/*.joblib
+models/job_metadata.csv
+

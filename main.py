@@ -1,14 +1,14 @@
 from fastapi import FastAPI
+from models.tfidf.recommend_tfidf_model import TfidfRecommender
 
 
 app = FastAPI()
 
 
 @app.get("/")
-async def root():
-    return {"message": "Hello World"}
+async def main():
+    T
+    return
 
 
-@app.get("/hello/{name}")
-async def say_hello(name: str):
-    return {"message": f"Hello {name}"}
+
