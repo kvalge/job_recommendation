@@ -8,6 +8,7 @@
 - Numpy
 - scikit-learn
 - TfidfVectorizer
+- JavaScript  
 - CSS
 - HTML5
 
