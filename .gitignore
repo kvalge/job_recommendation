@@ -1,0 +1,57 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Virtual environment
+.venv/
+env/
+venv/
+ENV/
+env.bak/
+*.env
+
+# PyCharm project files
+.idea/
+
+# VSCode project files
+.vscode/
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints
+
+# macOS files
+.DS_Store
+
+# Test and coverage files
+.coverage
+htmlcov/
+.tox/
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+
+# Logs and output
+*.log
+*.out
+
+# Data and model files (optional — if you don’t want to version them)
+data/*.csv
+data/*.xlsx
+models/*.pkl
+models/*.joblib
+
+# FastAPI auto-generated stuff (e.g., docs)
+*.sqlite3
+
+# Temporary files
+*.tmp
+*.bak
+*.swp
+
+# If you use Jupyter occasionally
+*.ipynb
