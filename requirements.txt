@@ -1,3 +1,7 @@
-Pandas
-numpy
-scikit-learn
+Pandas~=2.3.0
+numpy~=2.3.1
+scikit-learn~=1.7.0
+joblib~=1.5.1
+uvicorn~=0.35.0
+fastapi~=0.115.14
+pydantic~=2.11.7
